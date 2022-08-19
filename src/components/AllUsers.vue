@@ -24,5 +24,8 @@ import axios from "axios";
 </script>
 
 <style scoped>
-
+.names {
+    display: grid;
+    grid-auto-flow: column;
+}
 </style>
