@@ -1,6 +1,6 @@
 <template>
-    <div class="names">
-        <h3 ref="usernames"></h3>
+    <div class="names" ref="usernames">
+        <h3 v-for="user in users" :key="user[`id`]">{{ user[`email`] }}</h3>
     </div>
 </template>
 
@@ -11,14 +11,18 @@ import axios from "axios";
             axios.request({
                 url: `https://reqres.in/api/users`
             }).then((response) => {
-                for(let i = 0; i < response[`data`][`data`].length; i++) {
-                   this.$refs[`usernames`][`innerHTML`] += response[`data`][`data`][i][`first_name`];
-                }
+                   this.users = response[`data`][`data`];
                 
             }).catch((error) => {
                 alert(`please, refresh the page`);
                 console.log(error);
             });
+        },
+
+        data() {
+            return {
+                users: []
+            }
         },
     }
 </script>
